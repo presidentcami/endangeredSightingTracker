@@ -63,7 +63,7 @@ function Students() {
           } else{
             return (
               <li key={student.id}>
-           {student.nickname} {student.lastname} <button type="button" onClick={() =>{onEdit(student)}}>EDIT</button>
+           {student.nickname} the {student.commonname} <button type="button" onClick={() =>{onEdit(student)}}>EDIT</button>
         </li>
             )
           }

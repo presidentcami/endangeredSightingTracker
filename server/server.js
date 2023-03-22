@@ -14,15 +14,16 @@ app.get('/', (req, res) => {
   res.json({ message: 'Hello from My template ExpressJS' });
 });
 
-// create the get request
+// create the get request for the individuals
 app.get('/api/individuals', cors(), async (req, res) => {
  try {
-   const { rows: individuals } = await db.query('SELECT * FROM individual');
+   const { rows: individuals } = await db.query('SELECT nickname, commonname FROM individual JOIN species ON species.species_id=individual.species_id;');
    res.send(individuals);
   } catch (e) {
     return res.status(400).json({ e });
   } 
 });  
+
 
 
 // create the POST request
