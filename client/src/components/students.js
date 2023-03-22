@@ -10,10 +10,10 @@ function Students() {
   const [editStudentId, setEditStudentId] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:8080/api/students")
+    fetch("http://localhost:8080/api/individuals")
       .then((response) => response.json())
-      .then((students) => {
-            setStudents(students);
+      .then((individuals) => {
+        setStudents(individuals);
           });
   }, []);
 
@@ -63,7 +63,7 @@ function Students() {
           } else{
             return (
               <li key={student.id}>
-           {student.firstname} {student.lastname} <button type="button" onClick={() =>{onEdit(student)}}>EDIT</button>
+           {student.nickname} {student.lastname} <button type="button" onClick={() =>{onEdit(student)}}>EDIT</button>
         </li>
             )
           }
