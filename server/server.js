@@ -17,14 +17,22 @@ app.get('/', (req, res) => {
 // create the get request for the individuals
 app.get('/api/individuals', cors(), async (req, res) => {
  try {
-   const { rows: individuals } = await db.query('SELECT nickname, commonname FROM individual JOIN species ON species.species_id=individual.species_id;');
+   const { rows: individuals } = await db.query('SELECT * FROM individuals JOIN species ON species.species_id=individuals.species_id;');
    res.send(individuals);
   } catch (e) {
     return res.status(400).json({ e });
   } 
 });  
 
-
+// get request for the species
+app.get('/api/species', cors(), async (req, res) => {
+  try {
+    const { rows: species } = await db.query('SELECT * FROM species');
+    res.send(species);
+  } catch (e) {
+    return res.status(400).json({ e });
+  }
+}); 
 
 // create the POST request
 // app.post('/api/students', cors(), async (req, res) => {
