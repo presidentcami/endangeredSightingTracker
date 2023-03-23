@@ -14,6 +14,7 @@ function Individuals() {
       .then((individuals) => {
         setIndividuals(individuals);
           });
+
     fetch("http://localhost:8080/api/species")
       .then((response) => response.json())
       .then((species) => {
@@ -23,7 +24,7 @@ function Individuals() {
     
   }, []);
 
-  const addStudent = (newIndividuals) => {
+  const addIndividuals = (newIndividuals) => {
     //console.log(newStudent);
     //postStudent(newStudent);
     setIndividuals((individuals) => [...individuals, newIndividuals]);
@@ -36,7 +37,7 @@ console.log("from individuals.js", individuals)
       <ul>
         {individuals.map((individual) => <li key={individual.individual_id}> {individual.nickname} the {individual.commonname} </li>)}
       </ul>
-      <Form saveStudent={addStudent} individuals={individuals} species={species} />
+      <Form setIndividuals={addIndividuals} individuals={individuals} species={species} />
     </div>
   );
 }

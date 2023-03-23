@@ -14,7 +14,7 @@ app.get('/', (req, res) => {
   res.json({ message: 'Hello from My template ExpressJS' });
 });
 
-// create the get request for the individuals
+// create the get request for the individuals with other info
 app.get('/api/individuals', cors(), async (req, res) => {
  try {
    const { rows: individuals } = await db.query('SELECT * FROM individuals JOIN species ON species.species_id=individuals.species_id;');
@@ -22,6 +22,15 @@ app.get('/api/individuals', cors(), async (req, res) => {
   } catch (e) {
     return res.status(400).json({ e });
   } 
+});  
+
+app.get('/api/justindividuals', cors(), async (req, res) => {
+  try {
+    const { rows: individuals } = await db.query('SELECT * FROM individuals;');
+    res.send(individuals);
+  } catch (e) {
+    return res.status(400).json({ e });
+  }
 });  
 
 // get request for the species
@@ -35,19 +44,21 @@ app.get('/api/species', cors(), async (req, res) => {
 }); 
 
 // create the POST request
-// app.post('/api/students', cors(), async (req, res) => {
-//   const newUser = {
-//     firstname: req.body.firstname,
-//     lastname: req.body.lastname,
-//   };
-//   console.log([newUser.firstname, newUser.lastname]);
-//   const result = await db.query(
-//     'INSERT INTO students(firstname, lastname) VALUES($1, $2) RETURNING *',
-//     [newUser.firstname, newUser.lastname],
-//   );
-//   console.log(result.rows[0]);
-//   res.json(result.rows[0]);
-// });
+app.post('/api/addto/individuals', cors(), async (req, res) => {
+  const { nickname, commonname } = req.body;
+  const speciesId = await db.query('SELECT species_id FROM species WHERE commonname=$1;', [commonname]) 
+  console.log(nickname, commonname, speciesId.rows[0].species_id);
+  const result = await db.query(
+    'INSERT INTO individuals(nickname, species_id) VALUES($1,$2) RETURNING *',
+    [nickname, speciesId.rows[0].species_id]
+  );
+ 
+  let response = result.rows[0];
+  const { rows: individuals } = await db.query('SELECT * FROM individuals JOIN species ON species.species_id=individuals.species_id;');
+  res.send(individuals);
+  // console.log(result.rows[0]);
+  // res.json(result.rows[0]);
+});
 
 //A put request - Update a student 
 // app.put('/api/students/:studentId', cors(), async (req, res) =>{
