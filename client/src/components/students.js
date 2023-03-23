@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import Form from "./form";
+import Form from "./addIndividualForm";
 
 function Students() {
   

@@ -26,8 +26,6 @@ const Form = ({ setIndividuals, individuals, species }) => {
 // done in parent of Form
   // console.log(individuals, species)
 
-
-
   const [state, dispatch] = useReducer(reducer, initialValue);
 
   const inputAction = (event) => {
@@ -67,32 +65,6 @@ const Form = ({ setIndividuals, individuals, species }) => {
     }
 
   }
-
-    //A function to handle the Update request
-  //   const updateStudent = (existingStudent) =>{
-  //     return fetch(`http://localhost:8080/api/students/${existingStudent.id}`, {
-  //         method: 'PUT',
-  //         headers: {'Content-Type': 'application/json'}, 
-  //         body: JSON.stringify(existingStudent)
-  //       }).then((response) => {
-  //           return response.json()
-  //       }).then((data) => {
-  //         console.log("From put request ", data);
-  //         props.saveStudent(data);
-  //     });
-
-  // }
-
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   if(student.id){
-  //     updateStudent(student);
-  //   } else{
-  //     postStudent(student);
-  //   }
-    
-  // };
 
   return (
     <form onSubmit={handleSubmit}>

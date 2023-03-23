@@ -1,11 +1,9 @@
-import { useState, useEffect } from "react";
-import Form from "./form";
+import { useEffect } from "react";
+import Form from "./addIndividualForm";
 
-function Individuals() {
+function Individuals({ individuals, setIndividuals, species, setSpecies }) {
   
-  // this is my original state with an array of students 
-  const [individuals, setIndividuals] = useState([]);
-  const [species, setSpecies] = useState([]);
+
 
 
   useEffect(() => {
@@ -22,13 +20,9 @@ function Individuals() {
       });
 
     
-  }, []);
+  }, // eslint-disable-next-line
+  []);
 
-  const addIndividuals = (newIndividuals) => {
-    //console.log(newStudent);
-    //postStudent(newStudent);
-    setIndividuals((individuals) => [...individuals, newIndividuals]);
-  };
 console.log("from individuals.js", individuals)
 
   return (
@@ -37,7 +31,7 @@ console.log("from individuals.js", individuals)
       <ul>
         {individuals.map((individual) => <li key={individual.individual_id}> {individual.nickname} the {individual.commonname} </li>)}
       </ul>
-      <Form setIndividuals={addIndividuals} individuals={individuals} species={species} />
+      <Form setIndividuals={setIndividuals} individuals={individuals} species={species} />
     </div>
   );
 }
