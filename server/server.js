@@ -60,6 +60,39 @@ app.post('/api/addto/individuals', cors(), async (req, res) => {
   // res.json(result.rows[0]);
 });
 
+
+// post request to add to sightings api/addto/sightings/
+//INSERT INTO sightings (sightingdate, location, healthy, email, individual_id) VALUES ('02-14-2023', 'Philadelphia', 'Yes', 'camiwills325@gmail.com', 1);
+app.post('/api/addto/sightings', cors(), async (req, res) => {
+  const { nickname, commonname } = req.body;
+  const speciesId = await db.query('SELECT species_id FROM species WHERE commonname=$1;', [commonname])
+  console.log(nickname, commonname, speciesId.rows[0].species_id);
+  const result = await db.query(
+    'INSERT INTO individuals(nickname, species_id) VALUES($1,$2) RETURNING *',
+    [nickname, speciesId.rows[0].species_id]
+  );
+
+  let response = result.rows[0];
+  const { rows: individuals } = await db.query('SELECT * FROM individuals JOIN species ON species.species_id=individuals.species_id;');
+  res.send(individuals);
+  // console.log(result.rows[0]);
+  // res.json(result.rows[0]);
+});
+
+//get sightings data
+
+app.get('/api/sightings', cors(), async (req, res) => {
+  try {
+    const { rows: sightings } = await db.query(
+      `SELECT sighting_id, sightingdate, location, healthy, email, nickname, commonname, scientificname, living, status FROM sightings 
+      JOIN individuals ON sightings.individual_id=individuals.individual_id 
+      JOIN species ON individuals.species_id = species.species_id`);
+    res.send(sightings);
+  } catch (e) {
+    return res.status(400).json({ e });
+  }
+});  
+
 //A put request - Update a student 
 // app.put('/api/students/:studentId', cors(), async (req, res) =>{
 //   console.log(req.params);

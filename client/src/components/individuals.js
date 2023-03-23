@@ -3,9 +3,6 @@ import Form from "./addIndividualForm";
 
 function Individuals({ individuals, setIndividuals, species, setSpecies }) {
   
-
-
-
   useEffect(() => {
     fetch("http://localhost:8080/api/individuals")
       .then((response) => response.json())
