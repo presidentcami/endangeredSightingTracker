@@ -1,5 +1,8 @@
 import { useEffect } from "react";
 import Form from "./addIndividualForm";
+import DeleteButton from "./deleteButton";
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+// import { faTrash as solidTrash } from '@fortawesome/free-solid-svg-icons'
 
 function Individuals({ individuals, setIndividuals, species, setSpecies }) {
   
@@ -22,14 +25,30 @@ function Individuals({ individuals, setIndividuals, species, setSpecies }) {
 
 console.log("from individuals.js", individuals)
 
+
   return (
+    <>
     <div className="students">
       <h2> List of Individual Animals </h2>
-      <ul>
-        {individuals.map((individual) => <li key={individual.individual_id}> {individual.nickname} the {individual.commonname} </li>)}
-      </ul>
+    <table>
+      <thead>
+        <tr>
+          <th>Nickname</th>
+          <th>Animal (Common Name)</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+            {individuals.map((individual) => 
+            <tr key={individual.individual_id}> 
+            <td>{individual.nickname}</td> 
+            <td>{individual.commonname}</td> 
+                <DeleteButton setIndividuals={setIndividuals} id={individual.individual_id} /></tr>)}
+      </tbody>
+    </table>
       <Form setIndividuals={setIndividuals} individuals={individuals} species={species} />
     </div>
+  </>
   );
 }
 

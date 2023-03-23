@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
+import AddSighting from './addSightingForm';
 
-
-const Sightings = () => {
+const Sightings = ({ individuals, species }) => {
 
     const [sightings, setSightings] = useState([]);
 
@@ -14,8 +14,10 @@ const Sightings = () => {
 
     }, // eslint-disable-next-line
         []);
-    console.log("sightings", sightings)
+    // console.log("sightings", sightings)
     return (
+        <>
+        <div><AddSighting individuals={individuals} species={species} setSightings={setSightings} /></div>
         <table>
             <thead>
                 <tr>
@@ -35,14 +37,15 @@ const Sightings = () => {
                             <td> {sighting.commonname}</td>
                             <td> {sighting.sightingdate}</td>
                             <td> {sighting.location}</td>
-                            <td> {sighting.healthy}</td>    
+                            {sighting.healthy?<td>Yes</td>:<td>No</td>}   
                             <td> {sighting.email}</td>
                         </tr>)})}
                                         
                 
             </tbody>
         </table>
-    )
+    </>
+  )
 }
 
 export default Sightings;

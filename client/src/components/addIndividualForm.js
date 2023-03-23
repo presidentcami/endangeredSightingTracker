@@ -58,18 +58,15 @@ const Form = ({ setIndividuals, individuals, species }) => {
           console.log('Events fetched when new event is added', individuals);
 
         })
-      console.log(state)
+      // console.log(state)
       // window.location = "/"; 
     } catch (error) {
       console.error(error.message)
     }
-
   }
 
   return (
     <form onSubmit={handleSubmit}>
-      
-      {/* onSubmit={handleSubmit} */}
       <fieldset>
         <h3>Add a New Individual</h3>
         <label>Nickname</label>
@@ -96,9 +93,9 @@ const Form = ({ setIndividuals, individuals, species }) => {
           {species.commonname} 
           </option>) }
         </select>
-        
+        <button type="submit">Add</button>
       </fieldset>
-      <button type="submit">Add</button>
+      
     </form>
   );
 };

@@ -1,10 +1,9 @@
-import { useState, useReducer } from "react";
+import { useReducer } from "react";
 
 // get event handling and submission set up, as well as post request INSERT INTO individuals (nickname, species_id)
 // on submit set value to nickname input value and species_id based on species they selected
 const initialValue = {
     nickname: '',
-    // commonname: '',
     sightingdate: '',
     location: '',
     healthy: '',
@@ -18,15 +17,16 @@ const reducer = (state, action) => {
                 ...state,
                 [action.payload.key]: action.payload.value,
             };
+        case 'reset':
+            return initialValue;
         default:
             throw new Error(`Unknown action type: ${action.type}`);
     }
 };
 
-const AddSighting = ({ individuals, species }) => {
+const AddSighting = ({ individuals, species, setSightings }) => {
     
-    const [sightings, setSightings] = useState([])
-    console.log(individuals, species)
+    // console.log(individuals, species)
     const [state, dispatch] = useReducer(reducer, initialValue);
 
     const inputAction = (event) => {
@@ -38,6 +38,10 @@ const AddSighting = ({ individuals, species }) => {
         });
         // console.log(initialValue)
     };
+
+    const reset = () => {
+        dispatch({ type: 'reset' })
+    }
 
     //A function to handle the post request
     const handleSubmit = async (e) => {
@@ -55,24 +59,20 @@ const AddSighting = ({ individuals, species }) => {
                 .then(sightings => {
                     setSightings(sightings);
                     console.log('Sightings fetched when new sighting is added', sightings);
+                    reset();
                 })
-            console.log(state)
+            // console.log(state)
             // window.location = "/"; 
         } catch (error) {
             console.error(error.message)
         }
+
 
     }
     
 
     return (
         <form onSubmit={handleSubmit}>
-            {/*                     <th>Individual Seen</th>
-                    <th>Animal Type</th>
-                    <th>Date</th>
-                    <th>Location</th>
-                    <th>Healthy?</th>
-                    <th>Scientists' Email</th> */}
             <fieldset>
                 <h3>See one of your endangered animals recently?</h3>
                 <label>Nickname</label>
@@ -90,21 +90,6 @@ const AddSighting = ({ individuals, species }) => {
                             {individual.nickname}
                         </option>)}
                 </select>
-                {/* <label>Animal</label>
-                <select
-                    name="commonname"
-                    onChange={inputAction}
-                >
-                    <option></option>
-                    {species.map((species) =>
-                        <option
-                            key={species.species_id}
-                            name="commonname"
-                        // value={species.commonname}
-                        >
-                            {species.commonname}
-                        </option>)}
-                </select> */}
                 <label>Date of Sighting</label>
                 <input
                     type="date"
@@ -135,15 +120,11 @@ const AddSighting = ({ individuals, species }) => {
                     name="email"
                     onChange={inputAction}
                 />
+                 <button type="submit">Add</button>
             </fieldset>
-            <button type="submit">Add</button>
+           
         </form >
     );
 }
 
 export default AddSighting;
-
-/*
-
-
- */
