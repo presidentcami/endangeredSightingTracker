@@ -27,13 +27,15 @@ console.log("from individuals.js", individuals)
 
   return (
     <>
-    <div className="students">
-      <h2> List of Individual Animals </h2>
-    <table>
+    <h2> Crystal Gems </h2>
+    <div className="individuals">
+        <div>
+          <h3>See our newest crystal gems here!</h3>
+    <table className=".indTableContainer">
       <thead>
         <tr>
           <th>Nickname</th>
-          <th>Animal (Common Name)</th>
+          <th>Crystal Gem</th>
           <th></th>
         </tr>
       </thead>
@@ -45,6 +47,7 @@ console.log("from individuals.js", individuals)
                 <td><DeleteButton setIndividuals={setIndividuals} id={individual.individual_id} /></td></tr>)}
       </tbody>
     </table>
+    </div>
       <Form setIndividuals={setIndividuals} individuals={individuals} species={species} />
     </div>
   </>

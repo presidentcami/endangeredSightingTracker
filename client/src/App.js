@@ -13,6 +13,7 @@ function App() {
       <section className="hero"></section>
       <Individuals individuals={individuals} setIndividuals={setIndividuals} species={species} setSpecies={setSpecies} />
       <Sightings individuals={individuals} species={species} />
+      <section className="footer"></section>
     </div>
   );
 }

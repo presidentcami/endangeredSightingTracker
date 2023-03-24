@@ -17,7 +17,7 @@ const Sightings = ({ individuals, species }) => {
     // console.log("sightings", sightings)
     return (
         <>
-        <div><AddSighting individuals={individuals} species={species} setSightings={setSightings} /></div>
+        <div className='sightings'><AddSighting individuals={individuals} species={species} setSightings={setSightings} /></div>
         <table>
             <thead>
                 <tr>

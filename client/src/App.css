@@ -1,11 +1,25 @@
-
-
-
 .App {
   text-align: center;
-  background-color: aqua;
-
+  background-color: #271c19;
+  color: #fff3ec;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  font-family: 'Sarala', sans-serif;
+  font-size: 20px;
 }
+
+h2 {
+  font-size: 60px;
+  font-family: 'Shrikhand', cursive;
+}
+
+h3, h4 {
+  font-family: 'Shrikhand', cursive;
+  font-size: 24px;
+}
+
+
 
 /* div {
   height: 500px;
@@ -14,6 +28,87 @@
 .hero {
   background-image: url("img/landscape.png");
   height: 100vh;
+}
+
+.footer {
+  height: 30px;
+}
+
+Button {
+  border-radius: 5px;
+  background-color: #140d0b;
+  color: #e78fb3;
+  font-family: 'Sarala', sans-serif;
+  margin: 10px;
+  border: none;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.individuals {
+  display: flex;
+  justify-content: space-evenly;
+  height: 50vh;
+}
+
+.sightings {
+  display: flex;
+}
+
+ th, td {
+  border: #ffc0ad solid 1px;
+  background-color: #55423d;
+  
+}
+
+table {
+  border-radius: 10px;
+  height:70px;
+  padding: 0 10px 10px 10px;
+  overflow: scroll;
+  margin-top: 20px;
+  background-color: #55423d;
+}
+
+#individualsForm, #addSightingForm {
+  background-color: #55423d;
+  border-radius: 10px;
+  height: fit-content;
+}
+
+#individualsForm{
+  margin-top: 150px;
+}
+
+#addSightingForm {
+  margin-top: 40px;
+  margin-left: 60px;
+  justify-content: center;
+}
+
+label {
+  padding: 15px;
+  margin: 20px;
+}
+
+select {
+  box-sizing: border-box;
+  /* width: 20%; */
+  margin: 10px;
+  padding: 12px, 20px;
+}
+
+input, select {
+  border: none;
+  background-color: #55423d;
+  border-bottom: 2px solid #ffc0ad;
+  color:#fff3ec;
+  font-family: 'Sarala', sans-serif;
+  font-size: 15px;
 }
 /* .App-logo {
   height: 40vmin;

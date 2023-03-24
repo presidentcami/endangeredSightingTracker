@@ -1,7 +1,7 @@
 // import { library, icon } from '@fortawesome/fontawesome-svg-core'
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 // import { faTrash as solidTrash } from '@fortawesome/free-solid-svg-icons'
-import Button from '@mui/material/Button';
+// import Button from '@mui/material/Button';
 
 
 const DeleteButton = ({ id, setIndividuals }) => {
@@ -28,7 +28,7 @@ const DeleteButton = ({ id, setIndividuals }) => {
 
     return (
         <>
-            <Button onClick={deleteRequest} variant={"outlined"}>Delete</Button> 
+            <button onClick={deleteRequest} variant={"outlined"}>Delete</button> 
         </>
     )
 }

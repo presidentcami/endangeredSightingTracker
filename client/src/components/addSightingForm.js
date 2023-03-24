@@ -69,9 +69,9 @@ const AddSighting = ({ individuals, setSightings }) => {
     
 
     return (
-        <form onSubmit={handleSubmit}>
-            <fieldset>
-                <h3>See one of your endangered animals recently?</h3>
+        <form onSubmit={handleSubmit} id="addSightingForm" >
+            {/* <fieldset> */}
+                <h3>See a Crystal Gem out in the wild?</h3>
                 <label>Nickname</label>
                 <select
                     name="nickname"
@@ -117,7 +117,7 @@ const AddSighting = ({ individuals, setSightings }) => {
                     onChange={inputAction}
                 />
                  <button type="submit">Add</button>
-            </fieldset>
+            {/* </fieldset> */}
            
         </form >
     );

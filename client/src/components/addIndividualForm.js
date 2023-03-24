@@ -46,7 +46,7 @@ const Form = ({ setIndividuals, individuals, species }) => {
     var textB = b.commonname.toUpperCase();
     return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
   });
-  
+
   //A function to handle the post request
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -73,9 +73,9 @@ const Form = ({ setIndividuals, individuals, species }) => {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <fieldset>
-        <h3>Add a New Individual</h3>
+    <form onSubmit={handleSubmit} id="individualsForm" >
+      {/* <fieldset> */}
+        <h3>Add a New Crystal Gem</h3>
         <label>Nickname</label>
         <input
           type="text"
@@ -85,7 +85,7 @@ const Form = ({ setIndividuals, individuals, species }) => {
           value={individuals.nickname}
           onChange={inputAction}
         />
-        <label>Animal</label>
+        <label>Gem</label>
         <select
           name="commonname"
           onChange={inputAction}
@@ -101,7 +101,7 @@ const Form = ({ setIndividuals, individuals, species }) => {
           </option>) }
         </select>
         <button type="submit">Add</button>
-      </fieldset>
+      {/* </fieldset> */}
       
     </form>
   );
