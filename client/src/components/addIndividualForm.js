@@ -38,8 +38,15 @@ const Form = ({ setIndividuals, individuals, species }) => {
     // console.log(initialValue)
   };
 
-  console.log(state, "species", species)
+  console.log("species", species)
 
+  // found this function via stackoverflow to sort my array of objects (species) by commonname so the drop down would display it properly
+  species.sort(function (a, b) {
+    var textA = a.commonname.toUpperCase();
+    var textB = b.commonname.toUpperCase();
+    return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+  });
+  
   //A function to handle the post request
   const handleSubmit = async (e) => {
     e.preventDefault();

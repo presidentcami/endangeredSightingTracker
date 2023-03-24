@@ -17,8 +17,6 @@ const reducer = (state, action) => {
                 ...state,
                 [action.payload.key]: action.payload.value,
             };
-        case 'reset':
-            return initialValue;
         default:
             throw new Error(`Unknown action type: ${action.type}`);
     }
@@ -39,9 +37,11 @@ const AddSighting = ({ individuals, species, setSightings }) => {
         // console.log(initialValue)
     };
 
-    const reset = () => {
-        dispatch({ type: 'reset' })
-    }
+    individuals.sort(function (a, b) {
+        var textA = a.nickname.toUpperCase();
+        var textB = b.nickname.toUpperCase();
+        return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+    });
 
     //A function to handle the post request
     const handleSubmit = async (e) => {
@@ -59,7 +59,6 @@ const AddSighting = ({ individuals, species, setSightings }) => {
                 .then(sightings => {
                     setSightings(sightings);
                     console.log('Sightings fetched when new sighting is added', sightings);
-                    reset();
                 })
             // console.log(state)
             // window.location = "/"; 
@@ -90,9 +89,9 @@ const AddSighting = ({ individuals, species, setSightings }) => {
                             {individual.nickname}
                         </option>)}
                 </select>
-                <label>Date of Sighting</label>
+                <label>Date and Time of Sighting</label>
                 <input
-                    type="date"
+                    type="datetime-local"
                     id="sightingdate"
                     name="sightingdate"
                     onChange={inputAction}

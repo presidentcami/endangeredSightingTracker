@@ -1,8 +1,7 @@
 import { useEffect } from "react";
 import Form from "./addIndividualForm";
 import DeleteButton from "./deleteButton";
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// import { faTrash as solidTrash } from '@fortawesome/free-solid-svg-icons'
+
 
 function Individuals({ individuals, setIndividuals, species, setSpecies }) {
   
@@ -43,7 +42,7 @@ console.log("from individuals.js", individuals)
             <tr key={individual.individual_id}> 
             <td>{individual.nickname}</td> 
             <td>{individual.commonname}</td> 
-                <DeleteButton setIndividuals={setIndividuals} id={individual.individual_id} /></tr>)}
+                <td><DeleteButton setIndividuals={setIndividuals} id={individual.individual_id} /></td></tr>)}
       </tbody>
     </table>
       <Form setIndividuals={setIndividuals} individuals={individuals} species={species} />
