@@ -10,9 +10,9 @@ function App() {
 
   return (
     <div className="App">
-      Hello from Techtonica
+      <section className="hero"></section>
       <Individuals individuals={individuals} setIndividuals={setIndividuals} species={species} setSpecies={setSpecies} />
-      <Sightings individuals={individuals} species={species}/>
+      <Sightings individuals={individuals} species={species} />
     </div>
   );
 }

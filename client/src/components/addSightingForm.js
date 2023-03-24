@@ -22,9 +22,9 @@ const reducer = (state, action) => {
     }
 };
 
-const AddSighting = ({ individuals, species, setSightings }) => {
+const AddSighting = ({ individuals, setSightings }) => {
     
-    // console.log(individuals, species)
+    // console.log(individuals)
     const [state, dispatch] = useReducer(reducer, initialValue);
 
     const inputAction = (event) => {
@@ -65,8 +65,6 @@ const AddSighting = ({ individuals, species, setSightings }) => {
         } catch (error) {
             console.error(error.message)
         }
-
-
     }
     
 
@@ -84,7 +82,6 @@ const AddSighting = ({ individuals, species, setSightings }) => {
                         <option
                             key={individual.individual_id}
                             name="nickname"
-                        // value={species.commonname}
                         >
                             {individual.nickname}
                         </option>)}
